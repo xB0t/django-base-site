@@ -1,20 +1,14 @@
 {
   "devDependencies": {
-    "babel-core": "~6.26.3",
-    "bootstrap": "~4.3.1",
-    "del": "~3.0.0",
-    "gulp": "~3.9.1",
-    "gulp-babel": "~7.0.1",
-    "gulp-browser": "~3.0.11",
-    "gulp-clean": "~0.4.0",
-    "gulp-livereload": "^4.0.2",
-    "gulp-rename": "~1.2.2",
-    "gulp-sass": "~4.0.1",
-    "gulp-sourcemaps": "^2.6.5",
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
     "jshint": "~2.9.6",
     "node-sass": "^4.12.0",
-    "popper.js": "^1.14.7",
+    "parcel-bundler": "^1.12.4",
+    "popper.js": "^1.16.0",
     "prettier": "1.16.4",
     "stylelint": "^9.10.1",
     "stylelint-config-prettier": "^5.3.0",
@@ -22,7 +16,24 @@
     "stylelint-config-standard": "^18.3.0",
     "stylelint-scss": "^3.11.1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/epicserve/django-base-site.git"
+  },
+  "author": "Brent O'Connor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/epicserve/django-base-site/issues"
+  },
+  "homepage": "https://github.com/epicserve/django-base-site#readme",
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ]
+  },
   "scripts": {
-    "postinstall": "./node_modules/.bin/gulp build"
+    "postinstall": "npm run build",
+    "watch": "npx parcel watch ./src/js/*.js ./src/css/*.scss --out-dir ./public/static/",
+    "build": "npx parcel build ./src/js/*.js ./src/css/*.scss --out-dir ./public/static/"
   }
 }

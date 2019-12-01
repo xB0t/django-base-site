@@ -31,6 +31,9 @@
       "@babel/preset-react"
     ]
   },
+  "jshintConfig": {
+    "esversion": 6
+  },
   "scripts": {
     "postinstall": "npm run build",
     "watch": "npx parcel watch ./src/js/*.js ./src/css/*.scss --out-dir ./public/static/",

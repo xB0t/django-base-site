@@ -6,6 +6,5 @@ if (myArr.toString() !== '2,3,4') {
   console.error("Array didn't transpile.");
 }
 if ($().modal === undefined) {
-  debugger;
   console.error("Bootstrap wasn't imported correctly.");
 }

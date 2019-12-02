@@ -36,7 +36,7 @@
   },
   "scripts": {
     "postinstall": "npm run build",
-    "watch": "npx parcel watch ./src/js/*.js ./src/css/*.scss --out-dir ./public/static/",
+    "watch": "npx parcel watch --hmr-port 35729 ./src/js/*.js ./src/css/*.scss --out-dir ./public/static/",
     "build": "npx parcel build ./src/js/*.js ./src/css/*.scss --out-dir ./public/static/"
   }
 }

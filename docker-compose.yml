@@ -59,7 +59,7 @@ services:
       dockerfile: Dockerfile.node
     working_dir: /code
 
-    command: sh -c "npx gulp"
+    command: sh -c "npm run watch"
 
     volumes:
       - .:/code

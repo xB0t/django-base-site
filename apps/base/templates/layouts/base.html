@@ -25,45 +25,28 @@
 
         {% block base_header %}
 
-            <div class="container">
-                <nav class="navbar navbar-expand-md navbar-light bg-faded">
+        <nav class="flex items-center justify-between flex-wrap bg-gray-700 p-6">
+          <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+            <div class="text-sm lg:flex-grow">
 
-                    <a class="navbar-brand" href="{% url 'site_index' %}">{{ SITE_NAME }}</a>
+              <a href="{% url 'site_index' %}" class="uppercase text-xl block mt-4 lg:inline-block lg:mt-0 text-gray-100 hover:text-white mr-4">
+                {{ SITE_NAME }}
+              </a>
 
-                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+              <a href="{% url 'site_index' %}" class="block mt-4 lg:inline-block lg:mt-0 text-gray-100 hover:text-white mr-4">
+                Home
+              </a>
+              <a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-gray-100 hover:text-white mr-4">
+                About
+              </a>
 
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'site_index' %}">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Contact</a>
-                            </li>
-                        </ul>
+              <a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-gray-100 hover:text-white">
+                Contact
+              </a>
 
-                        <ul class="nav navbar-nav">
-                            {% if not user.is_authenticated %}
-                                <li><a href="{% url 'account_login' %}">Sign In</a></li>
-                            {% else %}
-                                <li class="nav-item dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {% firstof user.get_short_name user.get_username %} <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li class="dropdown-item"><a href="{% url 'account_change_name' %}">Account Settings</a></li>
-                                        {% if user.is_staff %}<li class="dropdown-item"><a href="{% url 'admin:index' %}">Administration</a></li>{% endif %}
-                                        <li class="dropdown-item"><a href="{% url 'account_logout' %}">Sign Out</a></li>
-                                    </ul>
-                                </li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                </nav>
             </div>
+          </div>
+        </nav>
 
         {% endblock base_header %}
 
@@ -79,21 +62,17 @@
         {% endif %}
 
         {% block base_content %}
-        <div id="main-content" class="container">
+        <div id="main-content" class="flex-1 container mx-auto">
             {% block content %}
             {% endblock content %}
         </div>
         {% endblock base_content %}
 
         {% block base_footer %}
-        <div class="container">
-
-            <hr>
-            <footer>
-                <p>&copy; {{ SITE_NAME }} {% now "Y" %}</p>
-            </footer>
-
+        <div class="w-full absolute bottom-0 border-solid border-t border-gray-200">
+          <div class="text-gray-600 p-2">&copy; {{ SITE_NAME }} {% now "Y" %}</div>
         </div>
+
         {% endblock base_footer %}
 
         {% block bottom_script %}

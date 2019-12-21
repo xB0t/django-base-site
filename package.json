@@ -1,11 +1,10 @@
 {
   "name": "django-base-site",
   "description": "Django Base Site",
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.7.5",
+    "autoprefixer": "^9.7.3",
     "babel-loader": "^8.0.6",
-    "bootstrap": "^4.4.1",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.1",
     "eslint": "^6.7.2",
@@ -15,16 +14,14 @@
     "glob": "^7.1.6",
     "jquery": "^3.4.1",
     "mini-css-extract-plugin": "^0.8.0",
-    "node-sass": "^4.13.0",
-    "popper.js": "^1.16.0",
-    "sass-loader": "^8.0.0",
-    "style-loader": "^1.0.1",
+    "postcss-loader": "^3.0.0",
     "stylelint": "^12.0.0",
     "stylelint-config-prettier": "^8.0.0",
     "stylelint-config-recess-order": "^2.0.3",
     "stylelint-config-standard": "^19.0.0",
     "stylelint-scss": "^3.13.0",
     "stylelint-webpack-plugin": "^1.1.2",
+    "tailwindcss": "^1.1.4",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-livereload-plugin": "^2.2.0"
@@ -41,6 +38,7 @@
   "homepage": "https://github.com/epicserve/django-base-site#readme",
   "scripts": {
     "build": "npx webpack",
+    "build_css": "postcss src/css/base.css -o public/static/dist/css/base.min.css",
     "dev": "npx webpack --watch --progress",
     "postinstall": "npx webpack",
     "watch": "npx webpack --watch"

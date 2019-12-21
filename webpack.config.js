@@ -7,7 +7,7 @@ const path = require('path'),
   StylelintPlugin = require('stylelint-webpack-plugin'),
   isDevMode = process.env.NODE_ENV === 'development',
   paths = {
-    sassFiles: glob.sync('./src/scss/**/*.scss'),
+    cssFiles: glob.sync('./src/css/**/*.css'),
     jsFiles: glob.sync('./src/js/**/*.js'),
     outputDir: path.join(__dirname, 'public/static/dist/'),
   };
@@ -15,8 +15,8 @@ const path = require('path'),
 function getEntries() {
   const entries = {};
 
-  paths.sassFiles.forEach((srcFile) => {
-    const dstFile = srcFile.replace(/^\.\/src\/scss/, '/css').replace(/\.scss$/, '.min'),
+  paths.cssFiles.forEach((srcFile) => {
+    const dstFile = srcFile.replace(/^\.\/src/, '').replace(/\.css$/, '.min'),
       fileName = srcFile.split('/').pop();
 
     if (/^_/.test(fileName) === false) {
@@ -59,19 +59,9 @@ module.exports = {
       {
         test: /\.(s)?css$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              hmr: isDevMode,
-            },
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              url: false,
-            },
-          },
-          'sass-loader',
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
         ],
       },
     ],
@@ -89,10 +79,10 @@ module.exports = {
       chunkFilename: '[id].css',
       ignoreOrder: false, // Enable to remove warnings about conflicting order
     }),
-    new StylelintPlugin({
-      context: 'src/scss',
-      fix: true,
-    }),
+    // new StylelintPlugin({
+    //   context: 'src/css',
+    //   fix: true,
+    // }),
   ],
   // Necessary for file changes inside docker node volume to get picked up
   watchOptions: {

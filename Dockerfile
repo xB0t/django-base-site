@@ -1,12 +1,15 @@
 FROM python:3.8.1-alpine3.11
 
 
-ENV \
-    # This prevents Python from writing out pyc files \
-    PYTHONDONTWRITEBYTECODE=1 \
-    # This keeps Python from buffering stdin/stdout \
-    PYTHONUNBUFFERED=1 \
-    PYTHONPATH=/code
+ENV PIP_NO_CACHE_DIR=off \
+  PIP_DISABLE_PIP_VERSION_CHECK=on \
+  PIP_DEFAULT_TIMEOUT=100 \
+  POETRY_VERSION=1.0.3 \
+  # This prevents Python from writing out pyc files \
+  PYTHONDONTWRITEBYTECODE=1 \
+  # This keeps Python from buffering stdin/stdout \
+  PYTHONUNBUFFERED=1 \
+  PYTHONPATH=/code
 
 WORKDIR /code
 
@@ -19,9 +22,10 @@ RUN apk update \
     && apk add build-base python-dev postgresql-dev libffi-dev linux-headers
 
 # Install Python packages
-COPY Pipfile Pipfile.lock ./
+COPY poetry.lock pyproject.toml ./
 
 RUN set -ex \
     && pip install --upgrade pip \
-    && pip install pipenv --upgrade \
-    && pipenv install --deploy --dev --system
+    && pip install "poetry==$POETRY_VERSION" \
+    && poetry config virtualenvs.create false \
+    && poetry install --no-interaction --no-ansi

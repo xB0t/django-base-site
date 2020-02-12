@@ -107,6 +107,7 @@ remove_extra_files: ## Remove extra Django Base Site files not needed in a new p
 remove_heroku: ## Remove files used for Heroku
 	@rm -f Procfile
 	@rm bin/pre_compile
+	@rm runtime.txt
 
 .PHONY: remove_py_cache
 remove_py_cache: ## Remove cached Python bytecode

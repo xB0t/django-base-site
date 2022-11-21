@@ -1,7 +1,8 @@
 import { resolve } from 'path';
+import vue from '@vitejs/plugin-vue';
 
 export default {
-  plugins: [],
+  plugins: [vue()],
   root: resolve(__dirname, 'src'),
   base: '/public/static/',
   server: {

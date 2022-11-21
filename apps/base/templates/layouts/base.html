@@ -30,8 +30,8 @@
      " id="{% block body_id %}{% endblock body_id %}
      " {% endblock body_attr %}
     >
-    <header>
-      {% block base_header %}
+    {% block base_header %}
+      <header>
         <div class="container">
           <nav class="navbar navbar-expand-lg navbar-light bg-faded">
             <div class="container-fluid">
@@ -92,9 +92,9 @@
             </div>
           </nav>
         </div>
-      {% endblock base_header %}
+      </header>
+    {% endblock base_header %}
 
-    </header>
     <main class="flex-shrink-0">
       {% block breadcrumb %}
       {% endblock breadcrumb %}
@@ -113,11 +113,14 @@
       {% endblock base_content %}
 
     </main>
-    <footer class="footer mt-auto">
-      <div class="container border-top py-3">
-        <p>© {{ SITE_NAME }} {% now "Y" %}</p>
-      </div>
-    </footer>
+    {% block base_footer %}
+      <footer class="footer mt-auto">
+        <div class="container border-top py-3">
+          <p>© {{ SITE_NAME }} {% now "Y" %}</p>
+        </div>
+      </footer>
+    {% endblock base_footer %}
+
     {% block bottom_script %}
     {% endblock bottom_script %}
 

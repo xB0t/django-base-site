@@ -1,0 +1,51 @@
+# fly.toml file generated for django-base-site on 2022-12-31T10:20:01-06:00
+
+app = "django-base-site"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[build]
+  dockerfile = "config/docker/Dockerfile"
+
+[build.args]
+  ENV_NAME = "prod"
+
+[deploy]
+  release_command = "python manage.py migrate --noinput"
+
+[env]
+  PORT = "8080"
+  ALLOWED_HOSTS = "django-base-site.fly.dev"
+  INTERNAL_IPS = "django-base-site.fly.dev"
+  DB_SSL_REQUIRED = "off"
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  internal_port = 8080
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"

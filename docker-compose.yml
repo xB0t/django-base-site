@@ -63,13 +63,13 @@ services:
     build:
       context: .
       dockerfile: config/docker/Dockerfile.node
-    working_dir: /srv/app
+    working_dir: /srv/app/frontend
 
     command: sh -c "npm run dev"
 
     volumes:
       - .:/srv/app
-      - node_data:/srv/app/node_modules
+      - node_data:/srv/app/frontend/node_modules
 
     ports:
       - "3000:3000"

@@ -55,7 +55,7 @@ reset := `tput -Txterm sgr0`
     just _start_msg "Formatting Javascript code using eslint"
     {{ node_cmd_prefix }} npm run format-js
 
-# Format the justfile
+# Format the Justfile
 @format_just:
     just _start_msg "Formatting the justfile"
     just --fmt --unstable

@@ -2,13 +2,13 @@
   "name": "django-base-site",
   "description": "Django Base Site",
   "scripts": {
-    "dev": "vite --config src/config/vite.config.js",
-    "build": "vite build --config src/config/vite.config.js",
-    "preview": "vite preview --config src/config/vite.config.js",
-    "lint-sass": "npx stylelint --config src/config/stylelint.config.js ./src/scss/",
-    "format-sass": "npx stylelint --config src/config/stylelint.config.js --fix 'src/**/*.{css,scss}'",
-    "lint-js": "npx eslint --config src/config/eslint.config.js ./src/js",
-    "format-js": "npx eslint --config src/config/eslint.config.js --fix ./src/js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint-sass": "npx stylelint ./scss/",
+    "format-sass": "npx stylelint --fix 'scss/**/*.{css,scss}'",
+    "lint-js": "npx eslint ./js",
+    "format-js": "npx eslint --fix ./js"
   },
   "devDependencies": {
     "@popperjs/core": "^2.11.6",

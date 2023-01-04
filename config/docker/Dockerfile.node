@@ -1,8 +1,8 @@
 FROM node:19.3
 
-WORKDIR /srv/app
+WORKDIR /srv/app/frontend
 
-COPY package.json package-lock.json ./
+COPY ./frontend/package.json ./frontend/package-lock.json ./
 
 # Install Node packages
 RUN npm ci
